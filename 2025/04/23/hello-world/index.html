@@ -44,6 +44,30 @@
     
 
 
+        <style>
+            /* 保留原有背景代码 */
+            body {
+                position: relative;
+                min-height: 100vh;
+            }
+
+            body::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url(/image/sea.jpg) no-repeat center center fixed;
+                background-size: cover;
+                opacity: 0.3;
+                z-index: -1;
+            }
+
+            .wrapper {
+                position: relative;
+            }
+        </style>
 </head>
 
 <body>
