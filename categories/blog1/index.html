@@ -13,7 +13,7 @@
 
 
 
-<title>Category: blog1 | RAZY博客</title>
+<title>Category: blog1 | razy博客</title>
 
 
 
@@ -44,35 +44,40 @@
     
 
 
+        <style>
+            /* 保留原有背景代码 */
+            body {
+                position: relative;
+                min-height: 100vh;
+            }
+
+            body::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url(/image/sea.jpg) no-repeat center center fixed;
+                background-size: cover;
+                opacity: 0.3;
+                z-index: -1;
+            }
+
+            .wrapper {
+                position: relative;
+            }
+        </style>
 </head>
 
 <body>
-    <script>
-        // this function is used to check current theme before page loaded.
-        (() => {
-            const pagebody = document.getElementsByTagName('body')[0]
 
-            function setTheme(status) {
-
-                if (status === 'dark') {
-                    window.sessionStorage.theme = 'dark'
-                    pagebody.classList.add('dark-theme');
-
-                } else if (status === 'light') {
-                    window.sessionStorage.theme = 'light'
-                    pagebody.classList.remove('dark-theme');
-                }
-            };
-
-            setTheme(window.sessionStorage.theme)
-        })();
-    </script>
-
+    <!-- 保持原有布局结构 -->
     <div class="wrapper">
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">Razy主页</a></div>
+            <div class="navbar-header header-logo"><a href="/">Razy的主页</a></div>
             <div class="menu navbar-right">
                 
                 <a class="menu-item" href="/archives">博客</a>
@@ -97,7 +102,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">Razy主页</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">Razy的主页</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">
                     <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
@@ -163,6 +168,68 @@
 
             </div>
             <footer id="footer" class="footer">
+
+    <div class="site-stats">
+        <div class="stat-item">
+            <i class="fas fa-file-alt"></i>
+            <div class="stat-content">
+                <span class="stat-number">
+                    2
+                </span>
+                <span class="stat-label">文章</span>
+            </div>
+        </div>
+
+        <div class="stat-item">
+            <i class="fas fa-calendar-day"></i>
+            <div class="stat-content">
+                <span class="stat-number" id="days_since">0</span>
+                <span class="stat-label">建站天数</span>
+            </div>
+        </div>
+
+        <div class="stat-item">
+            <i class="fas fa-pencil-alt"></i>
+            <div class="stat-content">
+                <span class="stat-number">
+                    75
+                </span>
+                <span class="stat-label">全站字数</span>
+            </div>
+        </div>
+
+        <div class="stat-item">
+            <i class="fas fa-users"></i>
+            <div class="stat-content">
+                <span class="stat-number" id="busuanzi_value_site_uv">0</span>
+                <span class="stat-label">访客数</span>
+            </div>
+        </div>
+
+        <div class="stat-item">
+            <i class="fas fa-eye"></i>
+            <div class="stat-content">
+                <span class="stat-number" id="busuanzi_value_site_pv">0</span>
+                <span class="stat-label">访问量</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 建站天数计算脚本（同之前） -->
+    <script>
+        const since = 'Thu Apr 24 2025 00:00:00 GMT+0800 (中国标准时间)';
+        const startDate = new Date(since);
+        const currentDate = new Date();
+        const days = Math.floor((currentDate - startDate) / (1000 * 3600 * 24));
+        document.getElementById('days_since').textContent = days;
+    </script>
+
+    <!-- 引入 Font Awesome 图标库（如果主题未自带） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- 不蒜子统计（同之前） -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
     <div class="copyright">
         <span>© razy | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a
                     href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
