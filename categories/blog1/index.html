@@ -44,35 +44,30 @@
     
 
 
-        <style>
-            /* 保留原有背景代码 */
-            body {
-                position: relative;
-                min-height: 100vh;
-            }
-
-            body::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: url(/image/sea.jpg) no-repeat center center fixed;
-                background-size: cover;
-                opacity: 0.3;
-                z-index: -1;
-            }
-
-            .wrapper {
-                position: relative;
-            }
-        </style>
 </head>
 
 <body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
 
-    <!-- 保持原有布局结构 -->
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
     <div class="wrapper">
         <header>
     <nav class="navbar">
@@ -168,38 +163,78 @@
 
             </div>
             <footer id="footer" class="footer">
+    - 样式压缩 -->
+    <style>
+        .site-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            font-family: var(--font-sans)
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            color: var(--text-secondary)
+        }
+
+        .stat-label::after {
+            content: "："
+        }
+
+        .fas {
+            font-size: .9em;
+            color: var(--theme-color)
+        }
+
+        .stat-number {
+            font: 500 var(--font-mono);
+            color: var(--text-primary)
+        }
+    </style>
 
     <div class="site-stats">
-        <span class="stat-item"><i class="fas fa-file-alt"></i>&nbsp;<span class="stat-label">文章:</span>&nbsp;<span
-                class="stat-number">
-                2
-            </span></span>&nbsp;
-        <span class="stat-item"><i class="fas fa-calendar-day"></i>&nbsp;<span
-                class="stat-label">建站天数:</span>&nbsp;<span class="stat-number" id="days_since">0</span></span>&nbsp;
-        <span class="stat-item"><i class="fas fa-pencil-alt"></i>&nbsp;<span class="stat-label">全站字数:</span>&nbsp;<span
-                class="stat-number">
-                75
-            </span></span>&nbsp;
-        <span class="stat-item"><i class="fas fa-users"></i>&nbsp;<span class="stat-label">访客数:</span>&nbsp;<span
-                class="stat-number" id="busuanzi_value_site_uv">0</span></span>&nbsp;
-        <span class="stat-item"><i class="fas fa-eye"></i>&nbsp;<span class="stat-label">访问量:</span>&nbsp;<span
-                class="stat-number" id="busuanzi_value_site_pv">0</span></span>
+        
+            <div class="stat-item">
+                📄<span class="stat-label">
+                        文章
+                    </span>
+                    <span class="stat-number">2</span>
+            </div>
+            
+            <div class="stat-item">
+                📅<span class="stat-label">
+                        建站
+                    </span>
+                    <span class="stat-number"><b id="days_since">0</b></span>
+            </div>
+            
+            <div class="stat-item">
+                ✍️<span class="stat-label">
+                        字数
+                    </span>
+                    <span class="stat-number">75</span>
+            </div>
+            
+            <div class="stat-item">
+                👥<span class="stat-label">
+                        访客
+                    </span>
+                    <span class="stat-number"><b id="busuanzi_value_site_uv">0</b></span>
+            </div>
+            
+            <div class="stat-item">
+                👀<span class="stat-label">
+                        访问
+                    </span>
+                    <span class="stat-number"><b id="busuanzi_value_site_pv">0</b></span>
+            </div>
+            
     </div>
-    <!-- 建站天数计算脚本（同之前） -->
-    <script>
-        const since = 'Thu Apr 24 2025 00:00:00 GMT+0800 (中国标准时间)';
-        const startDate = new Date(since);
-        const currentDate = new Date();
-        const days = Math.floor((currentDate - startDate) / (1000 * 3600 * 24));
-        document.getElementById('days_since').textContent = days;
-    </script>
 
-    <!-- 引入 Font Awesome 图标库（如果主题未自带） -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <!-- 不蒜子统计（同之前） -->
+    <!-- 不蒜子统计 -->
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
     <div class="copyright">
         <span>© razy | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a
                     href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
