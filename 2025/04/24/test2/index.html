@@ -270,29 +270,38 @@
     
             </div>
             <footer id="footer" class="footer">
-
+    <!-- Site Statistics -->
     <style>
         .site-stats {
             display: flex;
             flex-wrap: wrap;
             gap: 1.8rem;
-            /* margin: 0 auto; */
-            /* 自动水平居中 */
+            /* 初始隐藏统计内容，防止未加载完成时显示 */
+            visibility: hidden;
+            min-height: 40px;
+            /* 预留内容空间，防止容器高度变化 */
         }
 
         .stat-item {
             display: flex;
             align-items: baseline;
             gap: 0.4rem;
-
         }
 
         .stat-label::after {
             content: "：";
         }
+
+        /* 占位符样式（可选） */
+        .stat-placeholder {
+            color: #9ca3af;
+            /* 浅灰色占位 */
+            min-width: 2ch;
+            /* 确保占位符宽度稳定 */
+        }
     </style>
 
-    <div class="site-stats">
+    <div class="site-stats" id="siteStatsContainer">
         
             <div class="stat-item">
                 <span class="stat-icon">
@@ -311,7 +320,7 @@
                 <span class="stat-label">
                     建站
                 </span>
-                <span class="stat-number"><b id="days_since">0</b></span>
+                <span class="stat-number"><b class="stat-placeholder" id="days_since">—</b></span>
             </div>
             
             <div class="stat-item">
@@ -331,7 +340,7 @@
                 <span class="stat-label">
                     访客
                 </span>
-                <span class="stat-number"><b id="busuanzi_value_site_uv">0</b></span>
+                <span class="stat-number"><b class="stat-placeholder" id="busuanzi_value_site_uv">—</b></span>
             </div>
             
             <div class="stat-item">
@@ -341,7 +350,7 @@
                 <span class="stat-label">
                     访问
                 </span>
-                <span class="stat-number"><b id="busuanzi_value_site_pv">0</b></span>
+                <span class="stat-number"><b class="stat-placeholder" id="busuanzi_value_site_pv">—</b></span>
             </div>
             
     </div>
@@ -349,21 +358,55 @@
     <!-- Busuanzi Statistics -->
     <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script>
-        // 等待Busuanzi脚本加载完成
-        document.addEventListener('DOMContentLoaded', function () {
-            // 检查Busuanzi是否加载完成
-            if (typeof busuanzi !== 'undefined') {
-                // 当Busuanzi数据加载完成后触发
-                busuanzi.pvCallback = function () {
-                    // 可以在这里添加其他更新逻辑
-                };
-                busuanzi.uvCallback = function () {
-                    // 可以在这里添加其他更新逻辑
-                };
-            }
-        });
-    </script>
+        // 初始化变量记录加载状态
+        let isBusuanziLoaded = false;
+        let isDaysCalculated = false;
 
+        // 1. 处理建站天数计算（假设你的建站时间是固定日期，如2020-01-01）
+        function calculateDaysSince() {
+            const startDate = new Date('2020-01-01'); // 替换为你的建站日期
+            const currentDate = new Date();
+            const diffTime = Math.abs(currentDate - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('days_since').textContent = diffDays;
+            isDaysCalculated = true;
+            checkAllLoaded(); // 检查是否全部加载完成
+        }
+
+        // 2. 监听Busuanzi数据加载完成（官方提供的回调）
+        document.addEventListener('DOMContentLoaded', () => {
+            // 监听busuanzi脚本加载完成
+            const busuanziScript = document.querySelector('script[src*="busuanzi.pure.mini.js"]');
+            busuanziScript.addEventListener('load', () => {
+                // 监听pv/uv数据更新（Busuanzi v2.3支持的回调）
+                if (typeof busuanzi !== 'undefined') {
+                    busuanzi.pvCallback = () => {
+                        document.getElementById('busuanzi_value_site_pv').textContent =
+                            busuanzi.value_site_pv || '—';
+                        isBusuanziLoaded = true;
+                        checkAllLoaded();
+                    };
+                    busuanzi.uvCallback = () => {
+                        document.getElementById('busuanzi_value_site_uv').textContent =
+                            busuanzi.value_site_uv || '—';
+                    };
+                    // 手动触发一次，防止回调未及时绑定
+                    if (busuanzi.value_site_pv) busuanzi.pvCallback();
+                    if (busuanzi.value_site_uv) busuanzi.uvCallback();
+                }
+            });
+        });
+
+        // 3. 检查所有数据是否加载完成，完成后显示内容
+        function checkAllLoaded() {
+            if (isBusuanziLoaded && isDaysCalculated) {
+                document.getElementById('siteStatsContainer').style.visibility = 'visible';
+            }
+        }
+
+        // 立即执行建站天数计算（同步执行，避免异步）
+        calculateDaysSince();
+    </script>
 
     <div class="copyright">
         <span>© razy | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a
