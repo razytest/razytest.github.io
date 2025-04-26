@@ -188,55 +188,12 @@
             </div>
             <footer id="footer" class="footer">
     <!-- Site Statistics -->
-    <style>
-        .site-stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.8rem;
-            min-height: 40px;
-            /* 预留基础高度 */
-        }
+    <div class="site-stats">
 
-        .stat-item {
-            /* 关键：固定单个统计项的最小宽度，防止内容变化导致宽度抖动 */
-            min-width: 120px;
-            /* 根据最长文本调整（如"访客：12345"的宽度） */
-            display: flex;
-            align-items: baseline;
-            gap: 0.4rem;
-            /* 防止内容溢出导致换行 */
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .stat-label::after {
-            content: "：";
-        }
-
-        /* 占位符样式（与实际数值保持宽度一致） */
-        .stat-placeholder {
-            color: #9ca3af;
-            /* 关键：用透明文本占位，确保宽度与实际数值一致 */
-            color: transparent;
-            text-shadow: 0 0 0 #9ca3af;
-            /* 用阴影模拟文字显示 */
-        }
-
-        /* 本地开发时显示模拟数据（解决本地不显示问题） */
-        @media (prefers-color-scheme: light) {
-            .stat-placeholder[data-local] {
-                color: #4b5563;
-                /* 本地显示黑色 */
-                text-shadow: none;
-            }
-        }
-    </style>
-
-    <div class="site-stats" id="siteStatsContainer">
         
             <div class="stat-item">
                 <span class="stat-icon">
-                    
+                    📄
                 </span>
                 <span class="stat-label">
                     文章
@@ -246,18 +203,17 @@
             
             <div class="stat-item">
                 <span class="stat-icon">
-                    
+                    📅
                 </span>
                 <span class="stat-label">
                     建站
                 </span>
-                <span class="stat-number"><b class="stat-placeholder"
-            id="days_since" data-local="—">—</b></span>
+                <span class="stat-number"><b id="days_since">0</b></span>
             </div>
             
             <div class="stat-item">
                 <span class="stat-icon">
-                    
+                    ✍️
                 </span>
                 <span class="stat-label">
                     字数
@@ -267,86 +223,28 @@
             
             <div class="stat-item">
                 <span class="stat-icon">
-                    
+                    👥
                 </span>
                 <span class="stat-label">
                     访客
                 </span>
-                <span class="stat-number"><b class="stat-placeholder" id="busuanzi_value_site_uv" data-local="1234">—</b></span>
+                <span class="stat-number"><b id="busuanzi_value_site_uv">0</b></span>
             </div>
             
             <div class="stat-item">
                 <span class="stat-icon">
-                    
+                    👀
                 </span>
                 <span class="stat-label">
                     访问
                 </span>
-                <span class="stat-number"><b class="stat-placeholder" id="busuanzi_value_site_pv" data-local="5678">—</b></span>
+                <span class="stat-number"><b id="busuanzi_value_site_pv">0</b></span>
             </div>
             
     </div>
 
     <!-- Busuanzi Statistics -->
     <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <script>
-        // 本地开发时显示模拟数据（解决本地不显示问题）
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            document.querySelectorAll('[data-local]').forEach(el => {
-                el.textContent = el.getAttribute('data-local');
-                el.classList.remove('stat-placeholder'); // 移除占位样式
-            });
-            // 本地直接显示内容，无需等待异步加载
-            document.getElementById('siteStatsContainer').style.visibility = 'visible';
-        } else {
-            // 线上环境逻辑
-            let isBusuanziLoaded = false;
-            let isDaysCalculated = false;
-
-            // 建站天数计算（同步执行）
-            function calculateDaysSince() {
-                const startDate = new Date('2020-01-01'); // 替换为你的建站日期
-                const currentDate = new Date();
-                const diffDays = Math.ceil((currentDate - startDate) / (1000 * 60 * 60 * 24));
-                document.getElementById('days_since').textContent = diffDays;
-                isDaysCalculated = true;
-                checkAllLoaded();
-            }
-
-            // 监听Busuanzi加载完成
-            document.addEventListener('DOMContentLoaded', () => {
-                const busuanziScript = document.querySelector('script[src*="busuanzi.pure.mini.js"]');
-                busuanziScript.addEventListener('load', () => {
-                    if (typeof busuanzi !== 'undefined') {
-                        // PV数据加载完成
-                        busuanzi.pvCallback = () => {
-                            const pvEl = document.getElementById('busuanzi_value_site_pv');
-                            pvEl.textContent = busuanzi.value_site_pv || '—';
-                            isBusuanziLoaded = true;
-                            checkAllLoaded();
-                        };
-                        // UV数据加载完成（UV可能比PV慢，单独处理）
-                        busuanzi.uvCallback = () => {
-                            const uvEl = document.getElementById('busuanzi_value_site_uv');
-                            uvEl.textContent = busuanzi.value_site_uv || '—';
-                        };
-                        // 立即检查是否已有数据（防止回调未触发）
-                        if (busuanzi.value_site_pv) busuanzi.pvCallback();
-                        if (busuanzi.value_site_uv) busuanzi.uvCallback();
-                    }
-                });
-            });
-
-            // 所有数据就绪后显示内容
-            function checkAllLoaded() {
-                if (isBusuanziLoaded && isDaysCalculated) {
-                    document.getElementById('siteStatsContainer').style.visibility = 'visible';
-                }
-            }
-
-            calculateDaysSince(); // 启动计算
-        }
-    </script>
 
     <div class="copyright">
         <span>© razy | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a
