@@ -201,34 +201,44 @@
     <style>
         .site-stats {
             display: flex;
-            gap: 1rem;
             flex-wrap: wrap;
-            justify-content: center;
+            gap: 1.8rem;
+            font-family: var(--font-sans);
+            margin: 0 auto;
+            /* 自动水平居中 */
         }
 
         .stat-item {
             display: flex;
-            align-items: center;
-            gap: 0.3rem;
+            align-items: baseline;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-label::after {
+            content: "：";
         }
 
         .stat-icon {
-            font-size: 1.1em;
+            font-size: 0.9em;
+            color: var(--theme-color);
         }
 
         .stat-number {
-            font-weight: 500;
+            font: 500 var(--font-mono);
+            color: var(--text-primary);
         }
     </style>
 
     <div class="site-stats">
+
         
             <div class="stat-item">
                 <span class="stat-icon">
                     📄
                 </span>
-                <span>
-                    文章：
+                <span class="stat-label">
+                    文章
                 </span>
                 <span class="stat-number">2</span>
             </div>
@@ -237,8 +247,8 @@
                 <span class="stat-icon">
                     📅
                 </span>
-                <span>
-                    建站：
+                <span class="stat-label">
+                    建站
                 </span>
                 <span class="stat-number"><b id="days_since">0</b></span>
             </div>
@@ -247,8 +257,8 @@
                 <span class="stat-icon">
                     ✍️
                 </span>
-                <span>
-                    字数：
+                <span class="stat-label">
+                    字数
                 </span>
                 <span class="stat-number">75</span>
             </div>
@@ -257,8 +267,8 @@
                 <span class="stat-icon">
                     👥
                 </span>
-                <span>
-                    访客：
+                <span class="stat-label">
+                    访客
                 </span>
                 <span class="stat-number"><b id="busuanzi_value_site_uv">0</b></span>
             </div>
@@ -267,8 +277,8 @@
                 <span class="stat-icon">
                     👀
                 </span>
-                <span>
-                    访问：
+                <span class="stat-label">
+                    访问
                 </span>
                 <span class="stat-number"><b id="busuanzi_value_site_pv">0</b></span>
             </div>
@@ -277,6 +287,7 @@
 
     <!-- Busuanzi Statistics -->
     <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 
     <div class="copyright">
         <span>© razy | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a
