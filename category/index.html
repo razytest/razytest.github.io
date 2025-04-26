@@ -198,27 +198,25 @@
             </div>
             <footer id="footer" class="footer">
     <!-- -- Site Statistics -->
-    <div class="site-stat">
-        <ul>
-            <li>文章总数: 2 篇</li>
-            <li>建站天数: <span id="days"></span> 天</li>
-            <li>总字数: 75 字</li>
-            <li>访客量: <span id="busuanzi_value_site_uv"></span> 次</li>
-            <li>浏览量: <span id="busuanzi_value_site_pv"></span> 次</li>
-        </ul>
+    <div class="site-stat" style="display: inline-block; margin: 10px 0;">
+        <span>文章总数: 2 篇 | </span>
+        <span>建站天数: <span id="days"></span> 天 | </span>
+        <span>总字数: 75 字 | </span>
+        <span>访客量: <span id="busuanzi_value_site_uv"></span> 次 | </span>
+        <span>浏览量: <span id="busuanzi_value_site_pv"></span> 次</span>
+
+        <!-- 不蒜子统计 -->
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        <!-- 建站天数计算 -->
+        <script>
+            // 请修改为你的建站时间，格式：YYYY-MM-DD
+            var startDate = new Date('2025-04-24');
+            var currentDate = new Date();
+            var days = Math.floor((currentDate - startDate) / 86400000);
+            document.getElementById('days').innerHTML = days;
+        </script>
     </div>
-
-    <!-- 不蒜子统计 -->
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-    <!-- 建站天数计算 -->
-    <script>
-        // 请修改为你的建站时间，格式：YYYY-MM-DD
-        var startDate = new Date('2025-04-24');
-        var currentDate = new Date();
-        var days = Math.floor((currentDate - startDate) / 86400000);
-        document.getElementById('days').innerHTML = days;
-    </script>
 
     <div class="copyright">
         <span>© razy | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a
