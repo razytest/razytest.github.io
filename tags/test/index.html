@@ -186,9 +186,8 @@
 
             </div>
             <footer id="footer" class="footer">
-    <!-- Site Statistics -->
+    <!-- - Site Statistics  -->
     <div class="site-stats">
-
         
             <div class="stat-item">
                 <span class="stat-icon">
@@ -222,28 +221,64 @@
             
             <div class="stat-item">
                 <span class="stat-icon">
-                    👥
+                    💬
                 </span>
                 <span class="stat-label">
-                    访客
+                    评论
                 </span>
-                <span class="stat-number"><b id="busuanzi_value_site_uv">0</b></span>
+                <span class="stat-number"><b id="valine_comment_count">0</b></span>
             </div>
             
             <div class="stat-item">
                 <span class="stat-icon">
-                    👀
+                    📖
                 </span>
                 <span class="stat-label">
-                    访问
+                    访客数
                 </span>
-                <span class="stat-number"><b id="busuanzi_value_site_pv">0</b></span>
+                <span class="stat-number"><b id="valine_visit_count">0</b></span>
             </div>
             
     </div>
 
-    <!-- Busuanzi Statistics -->
-    <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <!-- Valine Statistics -->
+    <!-- 引入LeanCloud SDK（必须） -->
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <!-- 引入Valine核心库 -->
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        // 初始化Valine统计（请替换为你自己的LeanCloud配置）
+        new Valine({
+            el: '#valine_comment_count', // 随便选一个存在的元素作为初始化容器
+            appId: cxBsrK65mxaUgQhb76MfdZtq - gzGzoHsz, // 你的LeanCloud应用ID
+            appKey: GU3OMC35H45TuN0PD0jVIAfo, // 你的LeanCloud应用Key
+            visitor: true, // 启用访问统计
+            recordIP: true // 记录IP地址
+        });
+
+        // 获取评论总数
+        AV.Query.doCloudQuery('select count(*) from Comment')
+            .then(res => {
+                const count = res.results[0].count;
+                document.getElementById('valine_comment_count').textContent = count;
+            });
+
+        // 获取文章总阅读量（需要每篇文章已启用Valine阅读统计）
+        AV.Query.doCloudQuery('select sum(views) from Post')
+            .then(res => {
+                const totalViews = res.results[0].sum;
+                document.getElementById('valine_visit_count').textContent = totalViews || 0;
+            });
+
+        // 建站天数计算（保持原有逻辑）
+        function calcDaysSince(startDate) {
+            const now = new Date();
+            const start = new Date(startDate);
+            return Math.floor((now - start) / (1000 * 60 * 60 * 24));
+        }
+        // 请将这里的日期替换为你的建站日期
+        document.getElementById('days_since').textContent = calcDaysSince('2025-04-24');
+    </script>
 
     <div class="copyright">
         <span>© razy | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a
