@@ -165,8 +165,8 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #ddd;
 }
 body {
-  font-size: 12pt;
-  font-weight: 600px;
+  font-size: 11pt;
+  font-weight: normal;
   line-height: 2em;
   overflow: overlay;
   background-color: #fbfbfb;
@@ -1321,73 +1321,4 @@ body.dark-theme .highlight .code .comment,
 body.dark-theme .highlight .code .deletion,
 body.dark-theme .highlight .code .meta {
   color: #7f7f7f;
-}
-.site-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 20px 0;
-  justify-content: center;
-}
-@media (max-width: 768px) {
-  .site-stats {
-    gap: 10px;
-  }
-  .stat-item {
-    min-width: 110px;
-    padding: 10px 14px;
-  }
-  .stat-item i {
-    font-size: 20px;
-    margin-right: 12px;
-  }
-  .stat-number {
-    font-size: 16px;
-  }
-  .stat-label {
-    font-size: 11px;
-  }
-}
-.stat-item::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.2) 50%, transparent 75%);
-  animation: shine 3s infinite;
-  opacity: 0.3;
-}
-@-moz-keyframes shine {
-  0% {
-    transform: translateX(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(100%) rotate(45deg);
-  }
-}
-@-webkit-keyframes shine {
-  0% {
-    transform: translateX(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(100%) rotate(45deg);
-  }
-}
-@-o-keyframes shine {
-  0% {
-    transform: translateX(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(100%) rotate(45deg);
-  }
-}
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(100%) rotate(45deg);
-  }
 }
