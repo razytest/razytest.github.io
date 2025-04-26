@@ -187,7 +187,7 @@
 
             </div>
             <footer id="footer" class="footer">
-    <!-- Site Statistics -->
+
     <style>
         .site-stats {
             display: flex;
@@ -210,7 +210,6 @@
     </style>
 
     <div class="site-stats">
-
         
             <div class="stat-item">
                 <span class="stat-icon">
@@ -266,6 +265,21 @@
 
     <!-- Busuanzi Statistics -->
     <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script>
+        // 等待Busuanzi脚本加载完成
+        document.addEventListener('DOMContentLoaded', function () {
+            // 检查Busuanzi是否加载完成
+            if (typeof busuanzi !== 'undefined') {
+                // 当Busuanzi数据加载完成后触发
+                busuanzi.pvCallback = function () {
+                    // 可以在这里添加其他更新逻辑
+                };
+                busuanzi.uvCallback = function () {
+                    // 可以在这里添加其他更新逻辑
+                };
+            }
+        });
+    </script>
 
 
     <div class="copyright">
