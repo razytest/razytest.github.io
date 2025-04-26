@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="razy">
+    
+        
+                
+                        
+                                
+                                    <title>
+                                        
+                                            hexo+github+valine搭建个人博客(windows) | 
+                                                    razy博客
+                                    </title>
+
+                                    
+                                        
+                                            <link rel="icon" href="/whale.ico">
+                                            
+
+                                                
+                                                    
+                                                        <!-- stylesheets list from _config.yml -->
+                                                        
+                                                            <link rel="stylesheet" href="/css/style.css">
+                                                            
+                                                                
+                                                                    
+                                                                        
+                                                                            <!-- scripts list from _config.yml -->
+                                                                            
+                                                                                <script
+                                                                                    src="/js/script.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/tocbot.min.js"></script>
+                                                                                
+                                                                                    
+                                                                                        
+                                                                                            
+                                                                                                
+                                                                                                    
+                                                                                                                
+                                                                                                                            
+                                                                                                                                
+        <style>
+            /* 保留原有背景代码 */
+            body {
+                position: relative;
+                min-height: 100vh;
+            }
+
+            body::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url(/image/sea.jpg) no-repeat center center fixed;
+                background-size: cover;
+                opacity: 0.3;
+                z-index: -1;
+            }
+
+            .wrapper {
+                position: relative;
+            }
+        </style>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Razy的主页</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives">博客</a>
+                
+                <a class="menu-item" href="/category">分类</a>
+                
+                <a class="menu-item" href="/tag">标签</a>
+                
+                <a class="menu-item" href="/mindmap">思维导图</a>
+                
+                <a class="menu-item" href="/about">关于我</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Razy的主页</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives">博客</a>
+                
+                <a class="menu-item" href="/category">分类</a>
+                
+                <a class="menu-item" href="/tag">标签</a>
+                
+                <a class="menu-item" href="/mindmap">思维导图</a>
+                
+                <a class="menu-item" href="/about">关于我</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+        
+            <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+                
+
+                    
+                        <article class="post-wrap">
+                            <header class="post-header">
+                                <h1 class="post-title">
+                                    hexo+github+valine搭建个人博客(windows)
+                                </h1>
+                                
+                                    <div class="post-meta">
+                                        
+                                            Author: <a itemprop="author" rel="author" href="/">razy</a>&nbsp;
+                                            
+
+                                                
+                                                    <span class="post-time">
+                                                        Date: <a href="#">四月 27, 2025&nbsp;&nbsp;0:39:36</a>&nbsp;
+                                                    </span>
+                                                    
+                                                        
+                                                            <span class="post-category">
+                                                                Category:
+                                                                
+                                                                    <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">个人博客</a>&nbsp;
+                                                                    
+                                                            </span>
+                                                            
+                                    </div>
+                                    
+                                        <div class="post-meta">
+                                            <span class="page-pv">总阅读量:<a href="#"><span
+                                                        id="busuanzi_value_page_pv">0</a>&nbsp;</span>
+                                            </span>
+                                            <span class="word-count">文章字数:<a href="#">1.7k</a>&nbsp;
+                                            </span>
+                                            <span class="reading-time">推荐阅读时长:<a href="#"> NaNmin</a> &nbsp;</span>
+                                        </div>
+                            </header>
+
+                            <div class="post-content">
+                                <ul>
+<li>建立个人博客是 <strong>《软技能》（推荐阅读）</strong> 倡导的自我营销利器，博客既是能力展示的 <strong>“数字名片”</strong>，也是<strong>倒逼成长</strong>的反馈工具，助你在职场或创业中构建竞争壁垒，实现 <strong>“复利式”</strong> 职业跃迁。</li>
+<li>本人作为<strong>小白</strong>，部署博客绝不止网传中的半个小时，其中会出现一系列bug，浪费很多时间，由此单独写成博客，希望让友友们少走一些弯路！</li>
+</ul>
+<h2 id="1-安装git和NodeJS"><a href="#1-安装git和NodeJS" class="headerlink" title="1. 安装git和NodeJS"></a>1. 安装git和NodeJS</h2><h3 id="1-1-安装git"><a href="#1-1-安装git" class="headerlink" title="1.1 安装git"></a>1.1 安装git</h3><ul>
+<li>在Windows上使用Git，可以从<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git官网</a>直接，然后按默认选项安装即可。安装完成后，鼠标单击右键，找到Git Bash，蹦出一个类似命令行窗口的东西，就说明Git安装成功！<blockquote>
+<p>注： 由于是新手，希望能够进一步学习将vscode中的代码用git上传到仓库，所以参考了B站上<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vM4m1Q7hC?spm_id_from=333.788.videopod.sections&vd_source=eacb56fd643e5f974974f29fe44d7806">甘一日船 在Windows上安装Git</a>这个视频，可以进行后续 <strong>进一步学习git</strong>，没需求的可以直接按官网部署。</p>
+</blockquote>
+</li>
+</ul>
+  
+
+<ul>
+<li>在Git中绑定Github账号，打开“Git Bash”，在命令框中依次输入两行命令：</li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;</span><br><span class="line">git config --global user.email &quot;you email&quot;</span><br><span class="line"># 上述的name和email必须和github上的严格对应！</span><br></pre></td></tr></table></figure>
+<ul>
+<li>由于 Hexo 是基于 Node.js 驱动的一款博客框架，所以可以从<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">NodeJS官网</a>进行安装并配置环境变量。（我看B站上一个<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wuaDeQEUE/?spm_id_from=333.1391.0.0">五分钟的视频</a>安装的）安装之后可以输入以下命令查看是否安装成功：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git version   </span><br><span class="line">node -v  </span><br><span class="line">npm -v </span><br></pre></td></tr></table></figure>
+<h2 id="2-安装Hexo"><a href="#2-安装Hexo" class="headerlink" title="2. 安装Hexo"></a>2. 安装Hexo</h2><ul>
+<li>以上环境准备好了就可使用 npm 开始安装 Hexo 了，在命令行输入执行如下命令：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装 Hexo 完成后，在指定文件夹下打开“Git Bash”，再执行下列命令，Hexo 将会在<strong>指定文件夹中</strong>新建所须要的文件：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init myBlog</span><br><span class="line">cd myBlog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<ul>
+<li>若是上面的命令都没报错的话，就恭喜了，运行 hexo s 命令，其中 s 是 server 的缩写，在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 回车就能够预览效果了。</li>
+</ul>
+<h2 id="3-加载主题"><a href="#3-加载主题" class="headerlink" title="3. 加载主题"></a>3. 加载主题</h2><ul>
+<li>大家可以去官网上找自己喜欢的主题下载<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a> ，自己采用的主题是<a target="_blank" rel="noopener" href="https://github.com/Siricee/hexo-theme-Chic">https://github.com/Siricee/hexo-theme-Chic</a> ，直接在github上自行下载就好，这款有明暗两种颜色，可以打开链接<a target="_blank" rel="noopener" href="https://siricee.github.io/hexo-theme-Chic/">https://siricee.github.io/hexo-theme-Chic/</a> 进行预览。</li>
+</ul>
+<p> <img src="/picture/chic%E4%B8%BB%E9%A1%B5.png" alt="chic主题" title="git bash展示">{: width&#x3D;”500” height&#x3D;”333” style&#x3D;”display:block; margin:0 auto”}</p>
+<ul>
+<li>随后将下载的主题文件夹放在 myblog&#x2F;themes 中，在 _config.yml 文件中修改theme 为hexo-theme-Chic(注意和主题文件名一致)<br/><br>  <img src="/picture/theme%E9%85%8D%E7%BD%AE.png" alt="theme配置" title="theme配置">{ style&#x3D;”display:block; margin:0 auto”}<br/></li>
+<li>修改好之后在“Git Bash”中执行 hexo g 命令，然后再 hexo s ，在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 回车就能够预览修改主题后的效果了。</li>
+</ul>
+<h2 id="4-修改主题配置"><a href="#4-修改主题配置" class="headerlink" title="4. 修改主题配置"></a>4. 修改主题配置</h2><ul>
+<li>修改在主题文件夹下的 _config.yml 文件，完成自己个人的配置。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 列出一些容易修改的，其他的基本不要修改</span><br><span class="line"></span><br><span class="line"># Header 主页面标题</span><br><span class="line">navname: Bentham&#x27;s Blog</span><br><span class="line"></span><br><span class="line"># favicon 图标</span><br><span class="line">favicon: /favicon.ico</span><br><span class="line"></span><br><span class="line"># Profile 中间显示名字</span><br><span class="line">nickname: Jeremy Bentham</span><br><span class="line"></span><br><span class="line"># 个人描述，可以修改成自己要显示的句子</span><br><span class="line">description: Lorem ipsum dolor sit amet, **consectetur adipiscing elit.**&lt;br&gt;Fusce eget urna vitae velit *eleifend interdum at ac* nisi.</span><br><span class="line"></span><br><span class="line"># 个人头像图片</span><br><span class="line">avatar: /image/avatar.jpeg</span><br><span class="line"></span><br><span class="line"># 下方超链接（由于链接图标是固定的，没有的需要自行定义）</span><br><span class="line">ZhiHu: https://www.zhihu.com/people/sirice</span><br><span class="line">Github: https://github.com/Siricee</span><br></pre></td></tr></table></figure>
+<h2 id="5-将博客部署到GitHub上"><a href="#5-将博客部署到GitHub上" class="headerlink" title="5. 将博客部署到GitHub上"></a>5. 将博客部署到GitHub上</h2><ul>
+<li>点击 Start project 或者下面的 new repository 建立一个新的仓库，注意Github 仅能使用一个同名仓库的代码托管一个静态站点，这里注意仓库名一定要是： 用户名.github.io</li>
+<li>配置 SSH key ，要使用 git 工具首先要配置一下SSH key，为部署本地博客到 Github 作准备。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br><span class="line">git config --global user.email &quot;邮箱地址&quot;</span><br><span class="line">ssh-keygen -t rsa -C &#x27;上面的邮箱&#x27;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>按照提示完成三次回车，便可生成 ssh key，采用以下指令也可以查看自己的ssh：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<ul>
+<li>首次使用还须要确认并添加主机到本机SSH可信列表。若返回 Hi xxx! You’ve successfully authenticated, but GitHub does not provide shell access. 内容，则证实添加成功。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>登陆 Github 上添加刚刚生成的SSH key，按如下步骤添加，右上角点击头像-&gt; settings -&gt; SSH and GPG keys，建立一个新的 SSH key, 标题随便，key 就填刚才生成那个，确认建立，这样在你的 SSH keys 列表里就会看到你刚刚添加的密钥。</li>
+</ul>
+<br/>
+- 此时，本地和Github的工做作得差不了，是时候把它们两个链接起来了。你也能够查看官网的部署教程。先不着急，部署以前还须要修改配置和安装部署插件。第一：打开项目根目录下的_config.yml 配置文件配置参数。拉到文件末尾，填上以下配置。<br/>
+ ![deploy](picture/deploy.png  "deploy"){: style="display:block; margin:0 auto"}
+<font color="red">！注意：这里的repo最好采用图片中这种，而不是http://github.com/razytest/razytest.github.io.git ，这在后面hexo d部署到github中省掉很多麻烦！</font>
+- 第二要安装一个部署插件 hexo-deployer-git，打开“Git Bach”，输如以下指令：
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+- 最后执行如下两条命令就能够部署上传啦，如下 g 是 generate 缩写，d 是 deploy 缩写。
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g # 先生成</span><br><span class="line">hexo d # 部署到Github上</span><br></pre></td></tr></table></figure>
+- 这时用浏览器输入 用户名.github.io 就可以访问刚才的网站啦。
+## 6. 写文章并上传
+- 博客搭好了，就开始写文章了，这里简单介绍一下，详细的文档能够看 hexo 官网。新建文章，输入如下命令便可
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 文章标题</span><br></pre></td></tr></table></figure>
+- 执行完成后能够在 /source/_posts 下看到一个“文章标题.md”的文章文件啦。.md 就是 Markdown格式的文件，具体用法能够在网上找一下，语法仍是比较简单的。
+<font color="red">！注意：如果想自动增加.md文件中自动生成的内容，可以到\myBlog\scaffolds\post.md中自行添加。</font>
+![post_md](picture/post_md.png  "post_md"){: style="display:block; margin:0 auto"}
+- 之后依次输入以下命令：
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g # 生成文件</span><br><span class="line">hexo s # 本地服务器查看网站</span><br><span class="line">hexo d # 部署到Github 上</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-valine评论功能设置"><a href="#7-valine评论功能设置" class="headerlink" title="7. valine评论功能设置"></a>7. valine评论功能设置</h2><blockquote>
+<p>参考资料：</p>
+<ul>
+<li>B站：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Eg41157tL/?spm_id_from=333.1387.favlist.content.click&vd_source=eacb56fd643e5f974974f29fe44d7806">did迪 Hexo &amp; Github搭建自己的专属博客</a></li>
+<li>B站：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vM4m1Q7hC?spm_id_from=333.788.videopod.sections&vd_source=eacb56fd643e5f974974f29fe44d7806">在Windows上安装Git</a></li>
+<li>B站：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vM4m1Q7hC?spm_id_from=333.788.videopod.sections&vd_source=eacb56fd643e5f974974f29fe44d7806">5分钟学会如何安装nodejs（Windows）</a></li>
+</ul>
+</blockquote>
+
+                            </div>
+
+                            
+                                <section class="post-copyright">
+                                    
+                                        <p class="copyright-item">
+                                            <span>Author:</span>
+                                            <span>razy</span>
+                                        </p>
+                                        
+                                            
+                                                <p class="copyright-item">
+                                                    <span>Permalink:</span>
+                                                    <span><a href="http://example.com/2025/04/27/hexo-github-valine%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-windows/">http://example.com/2025/04/27/hexo-github-valine%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-windows/</a></span>
+                                                </p>
+                                                
+                                                    
+                                                        <p class="copyright-item">
+                                                            <span>License:</span>
+                                                            <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                                                        </p>
+                                                        
+                                                            
+                                                                <p class="copyright-item">
+                                                                    <span>Slogan:</span>
+                                                                    <span>Do you believe in <strong>destiny</strong>?</span>
+                                                                </p>
+                                                                
+
+                                </section>
+                                
+                                    <section class="post-tags">
+                                        <div>
+                                            <span>Tag(s):</span>
+                                            <span class="tag">
+                                                
+                                                    
+                                                        <a href="/tags/%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2/"># 搭建部署</a>
+                                                        
+                                                            
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <a href="javascript:window.history.back();">back</a>
+                                            <span>· </span>
+                                            <a href="/">home</a>
+                                        </div>
+                                    </section>
+                                    <section class="post-nav">
+                                        
+                                                
+                                                    <a class="next" rel="next" href="/2025/04/26/markdown%E5%B8%B8%E7%94%A8%E6%8C%87-%E6%95%B4%E7%90%86%E6%96%87%E6%A1%A3/">markdown常用指_整理文档</a>
+                                                    
+                                    </section>
+
+
+                        </article>
+</div>
+
+
+    <div id="vcomments"></div>
+    <div id="vcomments" style="width: 90%; margin: 0 auto; max-width: 800px;"></div>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'cxBsrK65mxaUgQhb76MfdZtq-gzGzoHsz',
+            appKey: 'GU3OMC35H45TuN0PD0jVIAfo',
+            placeholder: '快来留下你的评论吧～'
+        });
+    </script>
+    
+            </div>
+            <footer id="footer" class="footer">
+    <!-- -- Site Statistics -->
+    <div class="site-stat"
+        style="color: #888888cc; font-size: 12px; display: inline-block;line-height: 1.5;  margin: 32px 0 10px;">
+        <span>📄 文章总数： 2 篇 | </span>
+        <span>📅 建站天数：<span id="days"></span> 天 | </span>
+        <span>✍️ 总字数：1.7k 字 | </span>
+        <span>👥 访客量：<span id="busuanzi_value_site_uv"></span> 人 | </span>
+        <span>👀 浏览量：<span id="busuanzi_value_site_pv"></span> 次</span>
+
+        <!-- 不蒜子统计 -->
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        <!-- 建站天数计算 -->
+        <script>
+            // 请修改为你的建站时间，格式：YYYY-MM-DD
+            var startDate = new Date('2025-04-24');
+            var currentDate = new Date();
+            var days = Math.floor((currentDate - startDate) / 86400000);
+            document.getElementById('days').innerHTML = days;
+        </script>
+    </div>
+
+    <div class="copyright">
+        <span>© razy | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a
+                    href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+    </div>
+</body>
+
+</html>
