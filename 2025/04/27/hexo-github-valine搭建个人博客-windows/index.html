@@ -263,7 +263,7 @@
                                             <span class="page-pv">总阅读量:<a href="#"><span
                                                         id="busuanzi_value_page_pv">0</a>&nbsp;</span>
                                             </span>
-                                            <span class="word-count">文章字数:<a href="#">1.7k</a>&nbsp;
+                                            <span class="word-count">文章字数:<a href="#">1.6k</a>&nbsp;
                                             </span>
                                             <span class="reading-time">推荐阅读时长:<a href="#"> NaNmin</a> &nbsp;</span>
                                         </div>
@@ -302,12 +302,12 @@
 <li>若是上面的命令都没报错的话，就恭喜了，运行 hexo s 命令，其中 s 是 server 的缩写，在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 回车就能够预览效果了。</li>
 </ul>
 <h2 id="3-加载主题"><a href="#3-加载主题" class="headerlink" title="3. 加载主题"></a>3. 加载主题</h2><ul>
-<li>大家可以去官网上找自己喜欢的主题下载<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a> ，自己采用的主题是<a target="_blank" rel="noopener" href="https://github.com/Siricee/hexo-theme-Chic">https://github.com/Siricee/hexo-theme-Chic</a> ，直接在github上自行下载就好，这款有明暗两种颜色，可以打开链接<a target="_blank" rel="noopener" href="https://siricee.github.io/hexo-theme-Chic/">https://siricee.github.io/hexo-theme-Chic/</a> 进行预览。</li>
-</ul>
-<p> <img src="/picture/chic%E4%B8%BB%E9%A1%B5.png" alt="chic主题" title="git bash展示">{: width&#x3D;”500” height&#x3D;”333” style&#x3D;”display:block; margin:0 auto”}</p>
-<ul>
-<li>随后将下载的主题文件夹放在 myblog&#x2F;themes 中，在 _config.yml 文件中修改theme 为hexo-theme-Chic(注意和主题文件名一致)<br/><br>  <img src="/picture/theme%E9%85%8D%E7%BD%AE.png" alt="theme配置" title="theme配置">{ style&#x3D;”display:block; margin:0 auto”}<br/></li>
-<li>修改好之后在“Git Bash”中执行 hexo g 命令，然后再 hexo s ，在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 回车就能够预览修改主题后的效果了。</li>
+<li><p>大家可以去官网上找自己喜欢的主题下载<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a> ，自己采用的主题是<a target="_blank" rel="noopener" href="https://github.com/Siricee/hexo-theme-Chic">https://github.com/Siricee/hexo-theme-Chic</a> ，直接在github上自行下载就好，这款有明暗两种颜色，可以打开链接<a target="_blank" rel="noopener" href="https://siricee.github.io/hexo-theme-Chic/">https://siricee.github.io/hexo-theme-Chic/</a> 进行预览。</p>
+</li>
+<li><p>随后将下载的主题文件夹放在 myblog&#x2F;themes 中，在 _config.yml 文件中修改theme 为hexo-theme-Chic(注意和主题文件名一致)<br></p>
+</li>
+<li><p>修改好之后在“Git Bash”中执行 hexo g 命令，然后再 hexo s ，在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 回车就能够预览修改主题后的效果了。</p>
+</li>
 </ul>
 <h2 id="4-修改主题配置"><a href="#4-修改主题配置" class="headerlink" title="4. 修改主题配置"></a>4. 修改主题配置</h2><ul>
 <li>修改在主题文件夹下的 _config.yml 文件，完成自己个人的配置。</li>
@@ -329,22 +329,34 @@
 <ul>
 <li>登陆 Github 上添加刚刚生成的SSH key，按如下步骤添加，右上角点击头像-&gt; settings -&gt; SSH and GPG keys，建立一个新的 SSH key, 标题随便，key 就填刚才生成那个，确认建立，这样在你的 SSH keys 列表里就会看到你刚刚添加的密钥。</li>
 </ul>
-<br/>
-- 此时，本地和Github的工做作得差不了，是时候把它们两个链接起来了。你也能够查看官网的部署教程。先不着急，部署以前还须要修改配置和安装部署插件。第一：打开项目根目录下的_config.yml 配置文件配置参数。拉到文件末尾，填上以下配置。<br/>
- ![deploy](picture/deploy.png  "deploy"){: style="display:block; margin:0 auto"}
-<font color="red">！注意：这里的repo最好采用图片中这种，而不是http://github.com/razytest/razytest.github.io.git ，这在后面hexo d部署到github中省掉很多麻烦！</font>
-- 第二要安装一个部署插件 hexo-deployer-git，打开“Git Bach”，输如以下指令：
+<br>
+
+<ul>
+<li>此时，本地和Github的工做作得差不了，是时候把它们两个链接起来了。你也能够查看官网的部署教程。先不着急，部署以前还须要修改配置和安装部署插件。第一：打开项目根目录下的_config.yml 配置文件配置参数。拉到文件末尾，填上以下配置。<br></li>
+</ul>
+<p><font color="red">！注意：这里的repo最好采用图片中这种，而不是<a target="_blank" rel="noopener" href="http://github.com/razytest/razytest.github.io.git">http://github.com/razytest/razytest.github.io.git</a> ，这在后面hexo d部署到github中省掉很多麻烦！</font></p>
+<ul>
+<li>第二要安装一个部署插件 hexo-deployer-git，打开“Git Bach”，输如以下指令：</li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-- 最后执行如下两条命令就能够部署上传啦，如下 g 是 generate 缩写，d 是 deploy 缩写。
+<ul>
+<li>最后执行如下两条命令就能够部署上传啦，如下 g 是 generate 缩写，d 是 deploy 缩写。</li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g # 先生成</span><br><span class="line">hexo d # 部署到Github上</span><br></pre></td></tr></table></figure>
-- 这时用浏览器输入 用户名.github.io 就可以访问刚才的网站啦。
-## 6. 写文章并上传
-- 博客搭好了，就开始写文章了，这里简单介绍一下，详细的文档能够看 hexo 官网。新建文章，输入如下命令便可
+<ul>
+<li>这时用浏览器输入 用户名.github.io 就可以访问刚才的网站啦。</li>
+</ul>
+<h2 id="6-写文章并上传"><a href="#6-写文章并上传" class="headerlink" title="6. 写文章并上传"></a>6. 写文章并上传</h2><ul>
+<li>博客搭好了，就开始写文章了，这里简单介绍一下，详细的文档能够看 hexo 官网。新建文章，输入如下命令便可</li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 文章标题</span><br></pre></td></tr></table></figure>
-- 执行完成后能够在 /source/_posts 下看到一个“文章标题.md”的文章文件啦。.md 就是 Markdown格式的文件，具体用法能够在网上找一下，语法仍是比较简单的。
-<font color="red">！注意：如果想自动增加.md文件中自动生成的内容，可以到\myBlog\scaffolds\post.md中自行添加。</font>
-![post_md](picture/post_md.png  "post_md"){: style="display:block; margin:0 auto"}
-- 之后依次输入以下命令：
+<ul>
+<li>执行完成后能够在 &#x2F;source&#x2F;_posts 下看到一个“文章标题.md”的文章文件啦。.md 就是 Markdown格式的文件，具体用法能够在网上找一下，语法仍是比较简单的。</li>
+</ul>
+<p><font color="red">！注意：如果想自动增加.md文件中自动生成的内容，可以到\myBlog\scaffolds\post.md中自行添加。</font></p>
+<ul>
+<li>之后依次输入以下命令：</li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g # 生成文件</span><br><span class="line">hexo s # 本地服务器查看网站</span><br><span class="line">hexo d # 部署到Github 上</span><br></pre></td></tr></table></figure>
 
 <h2 id="7-valine评论功能设置"><a href="#7-valine评论功能设置" class="headerlink" title="7. valine评论功能设置"></a>7. valine评论功能设置</h2><blockquote>
